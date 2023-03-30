@@ -1,4 +1,4 @@
-package com.violetbeach.kafkainaction;
+package com.violetbeach.kafkainaction.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -13,6 +13,7 @@ import java.util.concurrent.ExecutionException;
 public class KafkaProduceService {
     private static final String TOPIC_NAME = "topic5";
     private final KafkaTemplate<String, String> kafkaTemplate;
+    private final KafkaTemplate<String, MessageObject> jsonKafkaTemplate;
 
     public void send(String message) {
         kafkaTemplate.send(TOPIC_NAME, message);
@@ -21,6 +22,10 @@ public class KafkaProduceService {
     public void sendWithCallback(String message) throws ExecutionException, InterruptedException {
         CompletableFuture<SendResult<String, String>> future = kafkaTemplate.send(TOPIC_NAME, message);
         System.out.println(future.get());
+    }
+
+    public void sendJson(MessageObject message) {
+        jsonKafkaTemplate.send(TOPIC_NAME, message);
     }
 
 }

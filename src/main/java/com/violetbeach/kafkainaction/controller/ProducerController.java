@@ -1,6 +1,7 @@
 package com.violetbeach.kafkainaction.controller;
 
-import com.violetbeach.kafkainaction.KafkaProduceService;
+import com.violetbeach.kafkainaction.service.KafkaProduceService;
+import com.violetbeach.kafkainaction.service.MessageObject;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,12 @@ public class ProducerController {
     @RequestMapping("/publish-callback")
     public String publishWithCallback(String message) throws ExecutionException, InterruptedException {
         kafkaProduceService.sendWithCallback(message);
+        return "published a message :" + message;
+    }
+
+    @RequestMapping("/publish-object")
+    public String publishObject(MessageObject message) {
+        kafkaProduceService.sendJson(message);
         return "published a message :" + message;
     }
 }
