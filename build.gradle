@@ -13,9 +13,10 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.apache.kafka:kafka-clients:3.4.0'
+    implementation 'org.springframework.kafka:spring-kafka'
+    implementation 'org.project-lombok:lombok'
 
-    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
