@@ -16,7 +16,7 @@ import java.util.Date;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class SaveService {
+public class CheckoutService {
 
     private final static String CHECKOUT_COMPLETE_TOPIC_NAME = "checkout.complete.v1";
     private final KafkaTemplate<String, String> kafkaTemplate;
@@ -52,6 +52,5 @@ public class SaveService {
             log.error("sendToKafka", e);
         }
     }
-
 
 }
